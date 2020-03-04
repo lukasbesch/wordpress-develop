@@ -88,6 +88,11 @@ function wp_initial_constants() {
 		define( 'WP_DEBUG_LOG', false );
 	}
 
+	// Add define( 'WP_DEBUG_LOG_ROTATE', true ); to enable log rotation.
+	if ( ! defined( 'WP_DEBUG_LOG_ROTATE' ) ) {
+		define( 'WP_DEBUG_LOG_ROTATE', false );
+	}
+
 	if ( ! defined( 'WP_CACHE' ) ) {
 		define( 'WP_CACHE', false );
 	}

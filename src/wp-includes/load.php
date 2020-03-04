@@ -334,7 +334,12 @@ function wp_debug_mode() {
 		}
 
 		if ( in_array( strtolower( (string) WP_DEBUG_LOG ), array( 'true', '1' ), true ) ) {
-			$log_path = WP_CONTENT_DIR . '/debug.log';
+			$log_name = 'debug';
+			if ( in_array( strtolower( (string) WP_DEBUG_LOG_ROTATE ), array( 'true', '1' ), true ) ) {
+				$log_name .= '-' . date( 'Y-m-d' );
+				$log_name = sanitize_file_name( $log_name . '-' . wp_hash( $log_name ) );
+			}
+			$log_path = WP_CONTENT_DIR . '/' . $log_name . '.log';
 		} elseif ( is_string( WP_DEBUG_LOG ) ) {
 			$log_path = WP_DEBUG_LOG;
 		} else {
